@@ -41,8 +41,8 @@ LABEL summary="${SUMMARY}" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
+RUN ls -alR /etc/rhsm-host
 RUN rm /etc/rhsm-host
-RUN subscription-manager repos --enable rhel-9-for-x86_64-baseos-rpms
 RUN dnf --enablerepo='rhel-9-for-x86_64-baseos-rpms,rhel-9-for-x86_64-appstream-rpms' -y module enable php:$PHP_VERSION && \
     INSTALL_PKGS="php php-fpm php-mysqlnd php-pgsql php-bcmath \
                   php-gd php-intl php-ldap php-mbstring php-pdo \
