@@ -1,4 +1,4 @@
-FROM ubi9/s2i-base:rhel9.1.0
+FROM rhel9/s2i-base:latest
 
 # This image provides an Apache+PHP environment for running PHP
 # applications.
