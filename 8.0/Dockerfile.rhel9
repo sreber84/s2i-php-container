@@ -41,7 +41,8 @@ LABEL summary="${SUMMARY}" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
-RUN sleep 9999
+RUN cp /var/run/openshift.io/volumes/etc-pki-entitlement-user-build-volume/entitlement.pem /etc/pki/entitlement/entitlement.pem
+RUN cp /var/run/openshift.io/volumes/etc-pki-entitlement-user-build-volume/entitlement-key.pem /etc/pki/entitlement/entitlement-key.pem
 RUN rm /etc/rhsm-host
 RUN dnf -y module enable php:$PHP_VERSION && \
     INSTALL_PKGS="php php-fpm php-mysqlnd php-pgsql php-bcmath \
