@@ -41,15 +41,14 @@ LABEL summary="${SUMMARY}" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
-RUN ls -alR /etc
 RUN rm /etc/rhsm-host
-RUN dnf -y module enable php:$PHP_VERSION && \
+RUN dnf --enablerepo='rhel-9-for-x86_64-baseos-rpms,rhel-9-for-x86_64-appstream-rpms' -y module enable php:$PHP_VERSION && \
     INSTALL_PKGS="php php-fpm php-mysqlnd php-pgsql php-bcmath \
                   php-gd php-intl php-ldap php-mbstring php-pdo \
                   php-process php-soap php-opcache php-xml \
                   php-gmp php-pecl-apcu php-pecl-zip mod_ssl hostname" && \
-    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
-    dnf reinstall -y tzdata && \
+    dnf --enablerepo='rhel-9-for-x86_64-baseos-rpms,rhel-9-for-x86_64-appstream-rpms' install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    dnf --enablerepo='rhel-9-for-x86_64-baseos-rpms,rhel-9-for-x86_64-appstream-rpms' reinstall -y tzdata && \
     rpm -V $INSTALL_PKGS && \
     dnf -y clean all --enablerepo='*'
 
